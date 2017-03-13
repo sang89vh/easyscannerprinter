@@ -14,22 +14,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 public class PDFMultipleImages {
 
-
-
-
-    public static void main(String[] args) throws IOException, DocumentException {
-        String DEST = "E:\\ITEXT\\multiple_images.pdf";
-          final String[] IMAGES = {
-                "E:\\ITEXT\\C1.jpg",
-                "E:\\ITEXT\\C2.png",
-        };
-        new PDFMultipleImages().createPdf(IMAGES,DEST);
-    }
-    public void createPdf(String[] images, String dest) throws IOException, DocumentException {
-
+    public static File createPdf(String[] images, String dest) throws IOException, DocumentException {
         File file = new File(dest);
         file.getParentFile().mkdirs();
-
         Image img = Image.getInstance(images[0]);
         Document document = new Document(img);
         PdfWriter.getInstance(document, new FileOutputStream(dest));
@@ -42,5 +29,7 @@ public class PDFMultipleImages {
             document.add(img);
         }
         document.close();
+
+        return file;
     }
 }

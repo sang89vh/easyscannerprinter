@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.myboxteam.scanner.R;
-import com.scanlibrary.ScanActivity;
+import com.myboxteam.scanner.fragment.ScanFragment;
 ;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,6 +36,7 @@ import permissions.dispatcher.RuntimePermissions;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_SCAN = 47;
+    private String bookId;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.imageView)
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
-            String imgPath = data.getStringExtra(ScanActivity.RESULT_IMAGE_PATH);
+            String imgPath = data.getStringExtra(ScanFragment.RESULT_IMAGE_PATH);
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
