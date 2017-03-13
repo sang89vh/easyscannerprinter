@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/03f35ed555da4465cb48dc1e9ff3842726d516ad/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3fce77e16a5ab92b8658eb67926229c5bc0c7970">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0b69a4dc4cf9fcba1e52340c70d1e0cfd9606d1a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/d9b487ab725eca56cfccb8706e9165ad545ec56f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e51c2f662bb72419632af5192553c37e33890a99">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8df9bb143b54379e06e9271bbb70031f981b6bfe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/505f3834ea5589f3160da134a9a10e06808db2f0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c8a96d2c1e0804fb65ef688ce328ce4070c5fb24/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/f40f03f11fe36984b645c1b6e2a4fc95cc55e649/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="32f8bc790ce5bb05e3e13097f21a3a4c7a0c92ab">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_33294bb063ed66152f61669031b137e489cf9eca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.gradle/caches/modules-2/files-2.1/com.itextpdf/itextg/5.5.10/247811bfc4d8f4e99c909236eadf4dfc6dfa1615/itextg-5.5.10.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="247811bfc4d8f4e99c909236eadf4dfc6dfa1615">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/itextg-5.5.10_b7a70d69a661faee4a86e57b0e4e521164b5ee62/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-7.0.1_52ff3536902099f7035a8f0575da0713eb78291c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/5515e88f73bf9d73e8540c4408384eafbdcb60eb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_c336bf625792fbef9aa7b17560115f5f58094a78/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/e545e5f78e15845d2084f6164fc42a83fc5d6a83/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0ace0246196e3be6706cacbf1fba679b9c79fe89/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9bfac4bc975865679986ed839b7def1aca8a0972">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0fc0acd9e6b3e99b35424b68e6f8ccba5185f1ca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/a24e3d9feee5eaadc48f2d108bd0f1fab71beb1d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5fe2047b14f1ca0c4d4ae9d4bbfd1833623e761b">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_40ef64c5543002b97ede32769ca1e5b1c58aba40/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/95c6dfcdb41a005f49c0f0fab268f1d854fe0aa0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e254f7de216ea3b294ccc5b808539654adbe1d6a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/1bf5ebd4352e2ab66b6ef7593496811267bc3a35/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_498ba74272e9e303fe9bdd47913a121678265552/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/460f29ffcd6e32f33c8f4aecf246af019b2357f4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="152de8da301561dcb0946471697a420d8f7a68c5">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_eac6e9ea44e52664c8b767f866e92e6d944af4a5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/scanlibrary/build/intermediates/bundles/default/libs/nineoldandroids-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f086e018e187da53a1432c188023c86d1fa3ff73">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/8/nineoldandroids-2.4.0_11e678340b25f37337cdf56fe8d439faa7d411b6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/0ce6a4baaf3ae1a71ce35b66b69f1e8aae65dea4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c0aa98db733d7b2b01e3ec52ea1c92d5379378fb">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0beb83df91b9b52270eba04551a3dc24b935dbef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/bbee0887fd440f88a7cfbb50aeb077ebe80510bc/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea6a989b83d19b1b461281e0475a6cd6514897f8">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_640e4cdb6d378f81423fc9382ff22e557c77d9cc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/exploded-aar/com.github.ctodobom/OpenCV-3.1.0-Android/-SNAPSHOT/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="69b42d42ab7e6fb65ad46c1916f923e6d99cf367">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.ctodobom-OpenCV-3.1.0-Android--SNAPSHOT_1602587b475b34a853feeea40a06739d73d6497c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/92ace263717a7d672b589e7e9f916a816a1de483/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b1c8f28c6b1e1ff7599e06d8c43fa82a73134db1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/837f670949d2815f60b16df4fed838a576bcf8a9/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="39e27f0debb3627fcb0b7dbcaf93aad17d81ffcd">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_238c5d22780642e1fe42b2e237d98b1c7f8bab48/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/Documents/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.2.0/support-annotations-25.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.2.0_39497a4dc60d09915bf0207f9e72bcf3aaa81f46/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/95df6db49da494f1dfb19ea622839305ee4c121c/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0e50694a7e11ad9ecf80793469ea704c472594ad/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/c9f24297ebb0795bfca503892183ba78d1fff23f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="705ffc2c856ea563f08d87cc59e797eb37c69e3f">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a2a400fe4899d83502851805fa8a96e024000ecb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.6/b2e6988baeea1aed656995f973aaa2fc3feaf447/library-1.0.6.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b2e6988baeea1aed656995f973aaa2fc3feaf447">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-1.0.6_a82a39d812cdafd3797bf4a416655e9b80526f0f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_4b4e5a6392d903b3ea059de81779acbcd53361ad/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/f79a53cb8577e60825821360effa71ff85bff420/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="97a90b867543905c0717d04f6a60532c9405aa33">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_53038dc9d3e4381abe1e3ddea8fec1174d8f31fa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/f19131aed21e99cf3d649c8daaf75ba4ba1b68d1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_acc65f7676d699424f709f51469f323bd7d5a5f4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jack/.android/build-cache/8eae1c2252b57277b19830345679975e36cfce7f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="/Users/jack/Documents/1_MMO/Mobile/EasyScannerPrinter/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_be6a0a1a1a9b0257c0975cb9d845d8bb3ee2d256/classes.dex" />
+    </item>
+
+</items>
