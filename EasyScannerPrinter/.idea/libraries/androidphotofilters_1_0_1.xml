@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="androidphotofilters-1.0.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/27ed5fef78e629e7e682b97b2d763d28cf49d6b3/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/27ed5fef78e629e7e682b97b2d763d28cf49d6b3/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.zomato/androidphotofilters/1.0.1/a13c9136e71f24ebbeed1fed7a3c06e8402d961c/androidphotofilters-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

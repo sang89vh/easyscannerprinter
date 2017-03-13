@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="library-0.1.2-beta">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/d4756bf7fb3986305832b624d8002f49466d4d2a/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/d4756bf7fb3986305832b624d8002f49466d4d2a/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.alhazmy13.ImageFilters/library/0.1.2-beta/42d2cc5c909e0062fa8592c862e044f778816b82/library-0.1.2-beta-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
