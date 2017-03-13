@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.davemorrissey.labs.subscaleview.ScaleImageView;
 import com.myboxteam.scanner.R;
 import com.myboxteam.scanner.activity.BookActivity;
+import com.myboxteam.scanner.activity.ScanActivity;
 import com.myboxteam.scanner.scanlibrary.ImageResizer;
 import com.myboxteam.scanner.scanlibrary.PolygonView;
 import com.myboxteam.scanner.scanlibrary.ProgressDialogFragment;
@@ -52,7 +53,7 @@ public class ScanFragment extends Fragment {
     // ===========================================================
 
     public static final String RESULT_IMAGE_PATH = "imgPath";
-
+    private ScanActivity scanActivity;
     private static final int TAKE_PHOTO_REQUEST_CODE = 815;
     private static final String SAVED_ARG_TAKEN_PHOTO_LOCATION = "taken_photo_loc";
 
@@ -110,7 +111,7 @@ public class ScanFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
-
+        scanActivity =(ScanActivity) getActivity();
         thumbnailsWrapHight = dpToPx(100);
     }
 
@@ -563,6 +564,9 @@ public class ScanFragment extends Fragment {
         viewHolder.scaleImageView.setVisibility(View.VISIBLE);
 
         viewHolder.polygonView.setVisibility(View.GONE);
+
+
+        scanActivity.initUIWidgets();
     }
 
     private void onRotatingTaskFinished(RotatingTaskResult rotatingTaskResult) {
@@ -789,5 +793,11 @@ public class ScanFragment extends Fragment {
         this.documentColoredBitmap = documentColoredBitmap;
     }
 
+    public Bitmap getDocumentBitmap() {
+        return documentBitmap;
+    }
 
+    public void setDocumentBitmap(Bitmap documentBitmap) {
+        this.documentBitmap = documentBitmap;
+    }
 }

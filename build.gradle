@@ -37,16 +37,20 @@ repositories {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    //compile 'com.github.andrejlukasevic:document-scanner:4.0.0' // Check for latest version
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.android.support:design:25.2.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.hotchemi:permissionsdispatcher:2.3.0'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.0'
+
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:2.3.0'
+    //compile 'org.opencv:opencv-android:2.4.8'
     compile 'com.github.ctodobom:OpenCV-3.1.0-Android:-SNAPSHOT'
     compile 'com.github.zomato:androidphotofilters:1.0.1'
     compile 'net.alhazmy13.ImageFilters:library:0.1.2-beta'
     compile 'com.github.mukeshsolanki:photofilter:master'
+
     compile 'com.hp.mss:mobileprintsdk:v2.02.466'
     compile 'com.itextpdf:itextg:5.5.10'
     compile 'com.github.barteksc:android-pdf-viewer:2.4.0'

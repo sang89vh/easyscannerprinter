@@ -51,7 +51,7 @@ public class ScanActivity extends AppCompatActivity  implements ThumbnailCallbac
         bookId = bundle.getString(ScanActivity.BOOK_ID);
 
         activity = this;
-        initUIWidgets();
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         int titleImgRes = bundle.getInt(EXTRA_BRAND_IMG_RES);
@@ -102,7 +102,7 @@ public class ScanActivity extends AppCompatActivity  implements ThumbnailCallbac
             super.onBackPressed();
         }
     }
-    private void initUIWidgets() {
+    public void initUIWidgets() {
         thumbListView = (RecyclerView) findViewById(R.id.thumbnails);
 
             initHorizontalList();
@@ -122,7 +122,7 @@ public class ScanActivity extends AppCompatActivity  implements ThumbnailCallbac
         Handler handler = new Handler();
         Runnable r = new Runnable() {
             public void run() {
-                Bitmap thumbImage = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.photo), 640, 640, false);
+                Bitmap thumbImage = Bitmap.createScaledBitmap(f.getDocumentBitmap(), 640, 640, false);
                 ThumbnailItem t1 = new ThumbnailItem();
                 ThumbnailItem t2 = new ThumbnailItem();
                 ThumbnailItem t4 = new ThumbnailItem();
@@ -183,7 +183,7 @@ public class ScanActivity extends AppCompatActivity  implements ThumbnailCallbac
 
     @Override
     public void onThumbnailClick(Filter filter) {
-        Bitmap bm = f.getTakenPhotoBitmap();
+        Bitmap bm = f.getDocumentBitmap();
         if(bm!= null) {
             f.setDocumentColoredBitmap(filter.processFilter(bm));
             f.updateViewsWithNewBitmap();

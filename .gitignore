@@ -1,3 +1,12 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
 /target/
 *.class
+/build/
+/.idea/
+EasyScannerPrinter/.idea/compiler.xml
+EasyScannerPrinter/.idea/copyright/profiles_settings.xml
+EasyScannerPrinter/.idea/gradle.xml
+EasyScannerPrinter/.idea/misc.xml
+EasyScannerPrinter/.idea/workspace.xml
+EasyScannerPrinter/build/android-profile/profile-2017-03-13-10-46-25-885.rawproto
+*.rawproto
