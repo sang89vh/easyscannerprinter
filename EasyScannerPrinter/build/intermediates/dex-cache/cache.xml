@@ -12,12 +12,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Admin\.android\build-cache\d4756bf7fb3986305832b624d8002f49466d4d2a\output\jars\classes.jar"
+        jar="C:\Users\Admin\.android\build-cache\fc783cd80fe6cdf353852318f123cc4c737e92d3\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="5fe2047b14f1ca0c4d4ae9d4bbfd1833623e761b">
-        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7883e192ffcfb7bfa89502563620119f18d73a4c\classes.dex" />
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0cd7f2ce0d79d73477d9b53b79e0e4643e846837\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.gradle\caches\modules-2\files-2.1\com.dropbox.core\dropbox-core-sdk\2.1.1\786a91e07e28575967a2a1656dd4eaaff10587fb\dropbox-core-sdk-2.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="786a91e07e28575967a2a1656dd4eaaff10587fb">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\dropbox-core-sdk-2.1.1_36881470664ae6b4c4a257aa7e156552ccd0fdb9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\03a2526a1cfc89a5be7e6f1e4d308eaca715f599\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b5e9e6cfb4124a84dfde3e1f73a45df586900087\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -39,21 +57,48 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cb3bff3886a40e8287d543f0bbc11b08c8388db3">
-        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_735e533e26b31264e660bf4839c4a724281d712f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Admin\.android\build-cache\437cfa1fb81a7343c562f4991a81c2c6ed2adbf8\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="ed4ae02bf32a6e40ae8f7c3e4787d81f10ba55a4">
         <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3f2916a5172a2570b21f7e144f60d27890db2b28\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-tasks-1.4.0_a729045a5e53740a2e648c205a9a256c35191b03\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\d4756bf7fb3986305832b624d8002f49466d4d2a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5fe2047b14f1ca0c4d4ae9d4bbfd1833623e761b">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7883e192ffcfb7bfa89502563620119f18d73a4c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.7.4\b8f38a249116b66d804a5ca2b14a3459b7913a94\jackson-core-2.7.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b8f38a249116b66d804a5ca2b14a3459b7913a94">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.7.4_297c16e6226d7498c5a187aa90944e025e4953d0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9132ac6ae8fa7f672b687b19f4c5a1a0e669efea">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_735e533e26b31264e660bf4839c4a724281d712f\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -66,6 +111,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\f686c71c6501be2fe6d376b15fb118114400ab92\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="eae6b4db15a9bdf11ac5c95710e24d727eeb8db3">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1f5b805af95acc7268d90ddf54f9f77df5669573\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\libs\nineoldandroids-2.4.0.jar"
         jumboMode="true"
         optimize="true"
@@ -75,12 +129,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Admin\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jar="C:\Users\Admin\.android\build-cache\0f64f11674590851cfd84d8abbbe16c2f3b7bb2b\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-tasks-1.4.0_a729045a5e53740a2e648c205a9a256c35191b03\classes.dex" />
+        sha1="112f5dcacba8bbbbc870c87b2c7a242917a13849">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3afcc4c6a8f7c9fb73e656829fc94f7e388cf224\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\326d4682b86375d015e8ce9aaae2e2f99fdfb3d8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b36f30ac5ee5d5214f4b1e2ac49f11889d58e71a">
+        <dex dex="C:\Users\Admin\OneDrive\ChupMobile\Scanner\EasyScannerPrinter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4a9ded9b4e9b4cfe0513a7c1ff1feab503f2b12f\classes.dex" />
     </item>
 
 </items>

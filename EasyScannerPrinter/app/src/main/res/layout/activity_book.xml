@@ -21,7 +21,29 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     </android.support.design.widget.AppBarLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
+        <com.myboxteam.scanner.utils.MySwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Need to wrap DragListView in another layout for
+                wrap_content to work for some reason -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.woxthebox.draglistview.DragListView
+                    android:id="@+id/drag_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </FrameLayout>
+        </com.myboxteam.scanner.utils.MySwipeRefreshLayout>
+    </FrameLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
