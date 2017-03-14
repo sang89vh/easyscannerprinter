@@ -52,4 +52,6 @@ dependencies {
     compile 'com.github.barteksc:android-pdf-viewer:2.4.0'
     compile 'com.android.support:design:25.2.0'
     compile 'com.parse:parse-android:1.13.3'
+
+    compile 'com.github.woxthebox:draglistview:1.4'
 }

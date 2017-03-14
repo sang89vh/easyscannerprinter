@@ -3,7 +3,6 @@ package com.myboxteam.scanner.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.graphics.drawable.BitmapDrawable;
@@ -34,11 +33,11 @@ import com.myboxteam.scanner.scanlibrary.PolygonView;
 import com.myboxteam.scanner.scanlibrary.ProgressDialogFragment;
 import com.myboxteam.scanner.scanlibrary.ScanUtils;
 import com.myboxteam.scanner.scanlibrary.Utils;
+import com.myboxteam.scanner.utils.DatabaseUtils;
 
 import org.opencv.core.Point;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -340,7 +339,7 @@ public class ScanFragment extends Fragment {
                 throw new RuntimeException("Not able to resize image");
             }
 
-            saveBitmapToFile(scannedDocFile, tmp);
+            DatabaseUtils.saveBitmapToFile(scannedDocFile, tmp);
             scannedDocFileBitmap = tmp;
 
             takenPhotoBitmap.recycle();
@@ -356,28 +355,7 @@ public class ScanFragment extends Fragment {
         }
     }
 
-    private boolean saveBitmapToFile(File file, Bitmap bitmap) {
-        FileOutputStream out = null;
-        try {
-            out = new FileOutputStream(file);
-            bitmap.compress(CompressFormat.JPEG, 100, out);
-            // PNG is a lossless format, the compression factor (100) is ignored
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        } finally {
-            try {
-                if (out != null) {
-                    out.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
 
-        return true;
-    }
 
     private void onPhotoTaken() {
         takenPhotoBitmap = getBitmapFromLocation(takenPhotoLocation);

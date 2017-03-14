@@ -1,10 +1,14 @@
 package com.myboxteam.scanner.utils;
 
+import android.graphics.Bitmap;
+
 import com.parse.GetCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,5 +47,33 @@ public  class DatabaseUtils {
             book.addAllUnique("imgPaths", imgPaths);
             book.pinInBackground();
         }
+    }
+
+    public static boolean saveBitmapToFile(File file, Bitmap bitmap) {
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            // PNG is a lossless format, the compression factor (100) is ignored
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean saveBitmapToFile(String path, Bitmap bitmap) {
+        File file = new File(path);
+        return  saveBitmapToFile(file,bitmap);
     }
 }
