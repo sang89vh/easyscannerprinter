@@ -5,18 +5,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-
-import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,36 +19,50 @@ import android.widget.Toast;
 
 import com.myboxteam.scanner.R;
 import com.myboxteam.scanner.adapter.ItemAdapter;
+import com.myboxteam.scanner.application.MBApplication;
 import com.myboxteam.scanner.fragment.ScanFragment;
 import com.myboxteam.scanner.utils.DatabaseUtils;
 import com.myboxteam.scanner.utils.MySwipeRefreshLayout;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.SaveCallback;
 import com.woxthebox.draglistview.DragItem;
 import com.woxthebox.draglistview.DragListView;
 import com.woxthebox.draglistview.swipe.ListSwipeHelper;
 import com.woxthebox.draglistview.swipe.ListSwipeItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * add news image, export to pdf, print, edit image
  */
 public class BookActivity extends AppCompatActivity {
-    private Context mContext;
     private String bookId;
     private ParseObject book;
     private String imgPath;
-
+    private MBApplication mApp;
     private Context mContext;
-    private GetCallback getCallback=  new GetCallback<ParseObject>() {
 
     private ArrayList<Pair<Long, String>> mItemArray;
     private DragListView mDragListView;
+    private ItemAdapter mListAdapter;
     private ListSwipeHelper mSwipeHelper;
     private MySwipeRefreshLayout mRefreshLayout;
+    private SaveCallback saveCallback = new SaveCallback() {
+        @Override
+        public void done(ParseException e) {
+                if(e == null){
+                    bookId = book.getObjectId();
+                    mItemArray = new ArrayList<Pair<Long, String>>();
+                    mItemArray.add(new Pair(1L, imgPath));
+                    setupListRecyclerView();
+                }else {
 
+                }
+        }
+    };
     private GetCallback getCallback = new GetCallback<ParseObject>() {
 
         @Override
@@ -63,10 +71,17 @@ public class BookActivity extends AppCompatActivity {
                 // object will be your game score
                 book = object;
 
-                bookId =  object.getObjectId();
-                DatabaseUtils.addImageToBook(book,imgPath);
+                bookId = object.getObjectId();
 
-                DatabaseUtils.addImageToBook(book, imgPath);
+                mItemArray = new ArrayList<Pair<Long, String>>();
+                List<String> list = book.getList("imgPaths");
+                for (int i = 0; i < list.size(); i++) {
+                    mItemArray.add(new Pair(new Long(i + 1), list.get(i)));
+                }
+
+                setupListRecyclerView();
+
+
 
             } else {
                 // something went wrong
@@ -80,7 +95,7 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
         mContext = this;
 
-
+        mApp = (MBApplication) getApplication();
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
@@ -96,19 +111,6 @@ public class BookActivity extends AppCompatActivity {
 
         imgPath = bundle.getString(ScanFragment.RESULT_IMAGE_PATH);
 
-
-        if(null == bookId){
-            book = DatabaseUtils.createBook(imgPath);
-            bookId = book.getObjectId();
-        }else{
-            DatabaseUtils.getBookById(bookId,getCallback);
-
-        if (null != bookId) {
-            book = DatabaseUtils.createBook(imgPath);
-        } else {
-            DatabaseUtils.getBookById(bookId, getCallback);
-
-        }
 
         mRefreshLayout = (MySwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         mDragListView = (DragListView) findViewById(R.id.drag_list_view);
@@ -148,10 +150,6 @@ public class BookActivity extends AppCompatActivity {
             }
         });
 
-        mItemArray = new ArrayList<>();
-        for (int i = 0; i < 40; i++) {
-            mItemArray.add(new Pair<>((long) i, "Item " + i));
-        }
 
         mRefreshLayout.setScrollingView(mDragListView.getRecyclerView());
         mRefreshLayout.setColorSchemeColors(ContextCompat.getColor(mContext, R.color.app_color));
@@ -186,43 +184,35 @@ public class BookActivity extends AppCompatActivity {
             }
         });
 
-        setupListRecyclerView();
 
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-//        Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
-        //imageView.setImageBitmap(bitmap);
+
+
+            if (null == bookId) {
+                book = DatabaseUtils.createBook(imgPath,saveCallback);
+
+            } else {
+                DatabaseUtils.getBookById(bookId, getCallback);
+
+            }
+
+
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
 
     @Override
     public void onBackPressed() {
 
-            Intent intent = new Intent(mContext, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            setResult(Activity.RESULT_OK,intent);
-            finish();
-            startActivity(intent);
-        }
-
+        Intent intent = new Intent(mContext, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+        startActivity(intent);
+    }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return true;
-
+    public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_list, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -235,6 +225,9 @@ public class BookActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
             case R.id.action_disable_drag:
                 mDragListView.setDragEnabled(false);
                 supportInvalidateOptionsMenu();
@@ -243,43 +236,19 @@ public class BookActivity extends AppCompatActivity {
                 mDragListView.setDragEnabled(true);
                 supportInvalidateOptionsMenu();
                 return true;
-            case R.id.action_list:
-                setupListRecyclerView();
-                return true;
-            case R.id.action_grid_vertical:
-                setupGridVerticalRecyclerView();
-                return true;
-            case R.id.action_grid_horizontal:
-                setupGridHorizontalRecyclerView();
-                return true;
+
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void setupListRecyclerView() {
         mDragListView.setLayoutManager(new LinearLayoutManager(mContext));
-        ItemAdapter listAdapter = new ItemAdapter(mItemArray, R.layout.list_item, R.id.image, false);
-        mDragListView.setAdapter(listAdapter, true);
+        mListAdapter = new ItemAdapter(mItemArray, R.layout.list_item, R.id.image, true, mApp.getBitmapOptions());
+        mDragListView.setAdapter(mListAdapter, false);
         mDragListView.setCanDragHorizontally(false);
         mDragListView.setCustomDragItem(new MyDragItem(mContext, R.layout.list_item));
     }
 
-    private void setupGridVerticalRecyclerView() {
-        mDragListView.setLayoutManager(new GridLayoutManager(mContext, 4));
-        ItemAdapter listAdapter = new ItemAdapter(mItemArray, R.layout.grid_item, R.id.item_layout, true);
-        mDragListView.setAdapter(listAdapter, true);
-        mDragListView.setCanDragHorizontally(true);
-        mDragListView.setCustomDragItem(null);
-
-    }
-
-    private void setupGridHorizontalRecyclerView() {
-        mDragListView.setLayoutManager(new GridLayoutManager(mContext, 4, LinearLayoutManager.HORIZONTAL, false));
-        ItemAdapter listAdapter = new ItemAdapter(mItemArray, R.layout.grid_item, R.id.item_layout, true);
-        mDragListView.setAdapter(listAdapter, true);
-        mDragListView.setCanDragHorizontally(true);
-        mDragListView.setCustomDragItem(null);
-    }
 
     private static class MyDragItem extends DragItem {
 

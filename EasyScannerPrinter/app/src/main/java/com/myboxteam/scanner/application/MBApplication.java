@@ -2,7 +2,11 @@ package com.myboxteam.scanner.application;
 
 import android.app.Activity;
 import android.content.Context;
-
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
@@ -11,13 +15,12 @@ import com.dropbox.core.v2.files.FileMetadata;
 import com.dropbox.core.v2.files.ListFolderResult;
 import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.users.FullAccount;
-import com.microsoft.onedrivesdk.picker.*;
+import com.microsoft.onedrivesdk.picker.IPicker;
+import com.microsoft.onedrivesdk.picker.LinkType;
+import com.microsoft.onedrivesdk.picker.Picker;
 import com.microsoft.onedrivesdk.saver.ISaver;
 import com.microsoft.onedrivesdk.saver.Saver;
-
-import android.net.Uri;
-import android.view.View;
-import android.view.View.OnClickListener;
+import com.parse.Parse;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,7 +38,11 @@ public class MBApplication extends android.app.Application {
     static {
         System.loadLibrary("NativeImageProcessor");
     }
-
+    private BitmapFactory.Options mBitmapOptions;
+    private String PARSE_APP_ID="6wNsswyF4zQLMI8YU8Ht";
+    private String PARSE_CLIENT_KEY="5Mjhz4NfVXG6v6YVnOxI";
+    private String PARSE_SERVER_URL="http://parse-server.mbackend.info/parse/";
+    
     private IPicker mPicker;
     private ISaver mSaver;
     private Context mContext;
@@ -113,9 +120,24 @@ public class MBApplication extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
+
+
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(new Parse.Configuration.Builder(this)
+                        .applicationId(PARSE_APP_ID)
+                        .clientKey(PARSE_CLIENT_KEY)
+                        .server(PARSE_SERVER_URL)
+//                .addNetworkInterceptor(new ParseLogInterceptor())
+                        .enableLocalDataStore()
+                        .build()
+        );
+
         mPicker = Picker.createPicker(ONEDRIVE_APP_ID);
         // create and launch the saver
         mSaver = Saver.createSaver(ONEDRIVE_APP_ID);
+
+        mBitmapOptions = new BitmapFactory.Options();
+        mBitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
 
     }
@@ -134,5 +156,13 @@ public class MBApplication extends android.app.Application {
 
     public void setmSaver(ISaver mSaver) {
         this.mSaver = mSaver;
+    }
+
+    public BitmapFactory.Options getBitmapOptions() {
+        return mBitmapOptions;
+    }
+
+    public void setBitmapOptions(BitmapFactory.Options mBitmapOptions) {
+        this.mBitmapOptions = mBitmapOptions;
     }
 }

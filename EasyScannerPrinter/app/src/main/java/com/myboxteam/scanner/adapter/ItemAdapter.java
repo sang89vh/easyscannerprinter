@@ -16,11 +16,13 @@
 
 package com.myboxteam.scanner.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.myboxteam.scanner.R;
@@ -29,15 +31,16 @@ import com.woxthebox.draglistview.DragItemAdapter;
 import java.util.ArrayList;
 
 public class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter.ViewHolder> {
-
+    private BitmapFactory.Options mBitmapOptions;
     private int mLayoutId;
     private int mGrabHandleId;
     private boolean mDragOnLongPress;
 
-    public ItemAdapter(ArrayList<Pair<Long, String>> list, int layoutId, int grabHandleId, boolean dragOnLongPress) {
+    public ItemAdapter(ArrayList<Pair<Long, String>> list, int layoutId, int grabHandleId, boolean dragOnLongPress,BitmapFactory.Options bitmapOptions) {
         mLayoutId = layoutId;
         mGrabHandleId = grabHandleId;
         mDragOnLongPress = dragOnLongPress;
+        mBitmapOptions = bitmapOptions;
         setHasStableIds(true);
         setItemList(list);
     }
@@ -52,7 +55,8 @@ public class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter
     public void onBindViewHolder(ViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         String text = mItemList.get(position).second;
-        holder.mText.setText(text);
+        Bitmap bitmap = BitmapFactory.decodeFile(text, mBitmapOptions);
+        holder.mImageView.setImageBitmap(bitmap);
         holder.itemView.setTag(mItemList.get(position));
     }
 
@@ -62,11 +66,11 @@ public class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter
     }
 
     class ViewHolder extends DragItemAdapter.ViewHolder {
-        TextView mText;
+        ImageView mImageView;
 
         ViewHolder(final View itemView) {
             super(itemView, mGrabHandleId, mDragOnLongPress);
-            mText = (TextView) itemView.findViewById(R.id.text);
+            mImageView = (ImageView) itemView.findViewById(R.id.content);
         }
 
         @Override

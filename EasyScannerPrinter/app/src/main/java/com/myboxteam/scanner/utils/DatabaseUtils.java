@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.parse.GetCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,10 +32,10 @@ public  class DatabaseUtils {
         return null;
     }
 
-    public static ParseObject createBook(String imgPath) {
+    public static ParseObject createBook(String imgPath, SaveCallback saveCallback) {
         ParseObject book = new ParseObject(BOOK_COLLECTION);
         book.addAllUnique("imgPaths", Arrays.asList(imgPath));
-        book.pinInBackground();
+        book.pinInBackground(saveCallback);
 
         return book;
 
