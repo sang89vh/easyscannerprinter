@@ -70,6 +70,7 @@ public class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter
 
         ViewHolder(final View itemView) {
             super(itemView, mGrabHandleId, mDragOnLongPress);
+
             mImageView = (ImageView) itemView.findViewById(R.id.content);
         }
 

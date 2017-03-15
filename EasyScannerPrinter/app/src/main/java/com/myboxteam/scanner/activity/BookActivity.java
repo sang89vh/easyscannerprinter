@@ -5,34 +5,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.util.Pair;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.myboxteam.scanner.R;
-import com.myboxteam.scanner.adapter.ItemAdapter;
 import com.myboxteam.scanner.application.MBApplication;
 import com.myboxteam.scanner.fragment.ScanFragment;
 import com.myboxteam.scanner.utils.DatabaseUtils;
-import com.myboxteam.scanner.utils.MySwipeRefreshLayout;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
-import com.woxthebox.draglistview.DragItem;
-import com.woxthebox.draglistview.DragListView;
-import com.woxthebox.draglistview.swipe.ListSwipeHelper;
-import com.woxthebox.draglistview.swipe.ListSwipeItem;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,22 +30,17 @@ public class BookActivity extends AppCompatActivity {
     private MBApplication mApp;
     private Context mContext;
 
-    private ArrayList<Pair<Long, String>> mItemArray;
-    private DragListView mDragListView;
-    private ItemAdapter mListAdapter;
-    private ListSwipeHelper mSwipeHelper;
-    private MySwipeRefreshLayout mRefreshLayout;
+
     private SaveCallback saveCallback = new SaveCallback() {
         @Override
         public void done(ParseException e) {
-                if(e == null){
-                    bookId = book.getObjectId();
-                    mItemArray = new ArrayList<Pair<Long, String>>();
-                    mItemArray.add(new Pair(1L, imgPath));
-                    setupListRecyclerView();
-                }else {
+            if (e == null) {
+                bookId = book.getObjectId();
 
-                }
+                setupListRecyclerView();
+            } else {
+
+            }
         }
     };
     private GetCallback getCallback = new GetCallback<ParseObject>() {
@@ -73,14 +53,13 @@ public class BookActivity extends AppCompatActivity {
 
                 bookId = object.getObjectId();
 
-                mItemArray = new ArrayList<Pair<Long, String>>();
+
                 List<String> list = book.getList("imgPaths");
                 for (int i = 0; i < list.size(); i++) {
-                    mItemArray.add(new Pair(new Long(i + 1), list.get(i)));
+
                 }
 
                 setupListRecyclerView();
-
 
 
             } else {
@@ -112,88 +91,13 @@ public class BookActivity extends AppCompatActivity {
         imgPath = bundle.getString(ScanFragment.RESULT_IMAGE_PATH);
 
 
-        mRefreshLayout = (MySwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-        mDragListView = (DragListView) findViewById(R.id.drag_list_view);
-        mDragListView.getRecyclerView().setVerticalScrollBarEnabled(true);
-        mDragListView.setDragListListener(new DragListView.DragListListenerAdapter() {
-            @Override
-            public void onItemDragStarted(int position) {
-                mRefreshLayout.setEnabled(false);
-                Toast.makeText(mContext, "Start - position: " + position, Toast.LENGTH_SHORT).show();
-            }
+        if (null == bookId) {
+            book = DatabaseUtils.createBook(imgPath, saveCallback);
 
-            @Override
-            public void onItemDragEnded(int fromPosition, int toPosition) {
-                mRefreshLayout.setEnabled(true);
-                if (fromPosition != toPosition) {
-                    Toast.makeText(mContext, "End - position: " + toPosition, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        } else {
+            DatabaseUtils.getBookById(bookId, getCallback);
 
-        mDragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
-            @Override
-            public void onItemSwipeStarted(ListSwipeItem item) {
-                mRefreshLayout.setEnabled(false);
-            }
-
-            @Override
-            public void onItemSwipeEnded(ListSwipeItem item, ListSwipeItem.SwipeDirection swipedDirection) {
-                mRefreshLayout.setEnabled(true);
-
-                // Swipe to delete on left
-                if (swipedDirection == ListSwipeItem.SwipeDirection.LEFT) {
-                    Pair<Long, String> adapterItem = (Pair<Long, String>) item.getTag();
-                    int pos = mDragListView.getAdapter().getPositionForItem(adapterItem);
-                    mDragListView.getAdapter().removeItem(pos);
-                }
-            }
-        });
-
-
-        mRefreshLayout.setScrollingView(mDragListView.getRecyclerView());
-        mRefreshLayout.setColorSchemeColors(ContextCompat.getColor(mContext, R.color.app_color));
-        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mRefreshLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mRefreshLayout.setRefreshing(false);
-                    }
-                }, 2000);
-            }
-        });
-
-        mDragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
-            @Override
-            public void onItemSwipeStarted(ListSwipeItem item) {
-                mRefreshLayout.setEnabled(false);
-            }
-
-            @Override
-            public void onItemSwipeEnded(ListSwipeItem item, ListSwipeItem.SwipeDirection swipedDirection) {
-                mRefreshLayout.setEnabled(true);
-
-                // Swipe to delete on left
-                if (swipedDirection == ListSwipeItem.SwipeDirection.LEFT) {
-                    Pair<Long, String> adapterItem = (Pair<Long, String>) item.getTag();
-                    int pos = mDragListView.getAdapter().getPositionForItem(adapterItem);
-                    mDragListView.getAdapter().removeItem(pos);
-                }
-            }
-        });
-
-
-
-
-            if (null == bookId) {
-                book = DatabaseUtils.createBook(imgPath,saveCallback);
-
-            } else {
-                DatabaseUtils.getBookById(bookId, getCallback);
-
-            }
+        }
 
 
     }
@@ -217,8 +121,6 @@ public class BookActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.action_disable_drag).setVisible(mDragListView.isDragEnabled());
-        menu.findItem(R.id.action_enable_drag).setVisible(!mDragListView.isDragEnabled());
         return true;
     }
 
@@ -228,40 +130,14 @@ public class BookActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.action_disable_drag:
-                mDragListView.setDragEnabled(false);
-                supportInvalidateOptionsMenu();
-                return true;
-            case R.id.action_enable_drag:
-                mDragListView.setDragEnabled(true);
-                supportInvalidateOptionsMenu();
-                return true;
+
 
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void setupListRecyclerView() {
-        mDragListView.setLayoutManager(new LinearLayoutManager(mContext));
-        mListAdapter = new ItemAdapter(mItemArray, R.layout.list_item, R.id.image, true, mApp.getBitmapOptions());
-        mDragListView.setAdapter(mListAdapter, false);
-        mDragListView.setCanDragHorizontally(false);
-        mDragListView.setCustomDragItem(new MyDragItem(mContext, R.layout.list_item));
-    }
-
-
-    private static class MyDragItem extends DragItem {
-
-        MyDragItem(Context context, int layoutId) {
-            super(context, layoutId);
-        }
-
-        @Override
-        public void onBindDragView(View clickedView, View dragView) {
-            CharSequence text = ((TextView) clickedView.findViewById(R.id.text)).getText();
-            ((TextView) dragView.findViewById(R.id.text)).setText(text);
-            dragView.findViewById(R.id.item_layout).setBackgroundColor(dragView.getResources().getColor(R.color.list_item_background));
-        }
 
     }
+
 }

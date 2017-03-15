@@ -43,9 +43,6 @@
         <activity
             android:name=".activity.PrintActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.CloudActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
 
