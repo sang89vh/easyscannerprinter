@@ -40,6 +40,7 @@ import org.opencv.core.Point;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -329,7 +330,7 @@ public class ScanFragment extends Fragment {
             }
 
         } else {
-            File scannedDocFile = createImageFile("scanned_doc");
+            File scannedDocFile = createImageFile(genrateId());
 
             Bitmap tmp = documentColoredBitmap != null ? documentColoredBitmap : documentBitmap;
 
@@ -777,5 +778,9 @@ public class ScanFragment extends Fragment {
 
     public void setDocumentBitmap(Bitmap documentBitmap) {
         this.documentBitmap = documentBitmap;
+    }
+
+    private static String genrateId(){
+        return  String.valueOf(Calendar.getInstance().getTimeInMillis());
     }
 }

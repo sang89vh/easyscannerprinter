@@ -19,12 +19,13 @@ package com.myboxteam.scanner.adapter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.util.Pair;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.davemorrissey.labs.subscaleview.ScaleImageView;
 import com.myboxteam.scanner.R;
 import com.woxthebox.draglistview.DragItemAdapter;
 
@@ -35,12 +36,17 @@ public class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter
     private int mLayoutId;
     private int mGrabHandleId;
     private boolean mDragOnLongPress;
+    private int mParentWidth;
+    private int mParentHeight;
 
-    public ItemAdapter(ArrayList<Pair<Long, String>> list, int layoutId, int grabHandleId, boolean dragOnLongPress,BitmapFactory.Options bitmapOptions) {
+    public ItemAdapter(ArrayList<Pair<Long, String>> list, int layoutId, int grabHandleId, boolean dragOnLongPress,BitmapFactory.Options bitmapOptions,int parentWidth,int parentHeight) {
         mLayoutId = layoutId;
         mGrabHandleId = grabHandleId;
         mDragOnLongPress = dragOnLongPress;
         mBitmapOptions = bitmapOptions;
+        mParentHeight = 2*parentHeight/3;
+        mParentWidth = parentWidth;
+        Log.d("ItemAdapter",String.valueOf(mParentHeight));
         setHasStableIds(true);
         setItemList(list);
     }
@@ -56,7 +62,9 @@ public class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter
         super.onBindViewHolder(holder, position);
         String text = mItemList.get(position).second;
         Bitmap bitmap = BitmapFactory.decodeFile(text, mBitmapOptions);
+        //Bitmap scaledBitmap = ImageResizer.scaleBitmap(bitmap, holder.itemView.getWidth(), holder.itemView.getHeight());
         holder.mImageView.setImageBitmap(bitmap);
+        holder.itemView.setLayoutParams(new ViewGroup.LayoutParams(mParentWidth, mParentHeight));
         holder.itemView.setTag(mItemList.get(position));
     }
 
@@ -66,11 +74,11 @@ public class ItemAdapter extends DragItemAdapter<Pair<Long, String>, ItemAdapter
     }
 
     class ViewHolder extends DragItemAdapter.ViewHolder {
-        ImageView mImageView;
+        ScaleImageView mImageView;
 
         ViewHolder(final View itemView) {
             super(itemView, mGrabHandleId, mDragOnLongPress);
-            mImageView = (ImageView) itemView.findViewById(R.id.content);
+            mImageView = (ScaleImageView) itemView.findViewById(R.id.image);
         }
 
         @Override

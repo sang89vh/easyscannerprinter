@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -21,7 +22,8 @@ public  class DatabaseUtils {
     public static String BOOK_COLLECTION = "SCANNER_BOOK";
     public static void getBookById(String bookId,GetCallback<ParseObject> callback) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery(BOOK_COLLECTION);
-        query.getInBackground("bookId",callback);
+        query.fromLocalDatastore();
+        query.getInBackground(bookId,callback);
     }
 
     public static void deleteBookById() {
@@ -34,6 +36,8 @@ public  class DatabaseUtils {
 
     public static ParseObject createBook(String imgPath, SaveCallback saveCallback) {
         ParseObject book = new ParseObject(BOOK_COLLECTION);
+        book.setObjectId(genrateId());
+
         book.addAllUnique("imgPaths", Arrays.asList(imgPath));
         book.pinInBackground(saveCallback);
 
@@ -73,6 +77,9 @@ public  class DatabaseUtils {
         return true;
     }
 
+    private static String genrateId(){
+        return  String.valueOf(Calendar.getInstance().getTimeInMillis());
+    }
     public static boolean saveBitmapToFile(String path, Bitmap bitmap) {
         File file = new File(path);
         return  saveBitmapToFile(file,bitmap);

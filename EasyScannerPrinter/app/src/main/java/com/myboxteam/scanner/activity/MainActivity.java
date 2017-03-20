@@ -1,27 +1,39 @@
 package com.myboxteam.scanner.activity;
 
 import android.Manifest;
-import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.myboxteam.scanner.R;
-import com.myboxteam.scanner.fragment.ScanFragment;
-;
+import com.myboxteam.scanner.adapter.EndlessRecyclerViewScrollListener;
+import com.myboxteam.scanner.adapter.GridSpacingItemDecoration;
+import com.myboxteam.scanner.adapter.BookRecyclerAdapter;
+import com.myboxteam.scanner.application.MBApplication;
+import com.myboxteam.scanner.dto.Video;
+import com.myboxteam.scanner.utils.DatabaseUtils;
+import com.myboxteam.scanner.utils.Utils;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -32,15 +44,20 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
+;
+
 @RuntimePermissions
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+    private MBApplication mApp;
+    private Context mContext;
+    protected BookRecyclerAdapter mVideoAdapter;
+    protected RecyclerView mListVideo;
     private static final int REQUEST_CODE_SCAN = 47;
     private String bookId;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.imageView)
-    ImageView imageView;
     @Bind(R.id.content_main)
     LinearLayout contentMain;
     @Bind(R.id.fab)
@@ -59,6 +76,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        mContext = getApplicationContext();
+
+        mApp = (MBApplication) getApplication();
+        /* List audio adapter */
+        mVideoAdapter = new BookRecyclerAdapter(mContext, new BookRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Video item) {
+
+                Intent intent = new Intent(mContext,BookActivity.class);
+                intent.putExtra(ScanActivity.BOOK_ID, item.getObjectId());
+                startActivity(intent);
+            }
+        }, mApp.getBitmapOptions(), Utils.getWidthScreen(this),Utils.getHeightScreen(this));
+
+        /* List audio from server */
+        mListVideo = (RecyclerView) findViewById(R.id.list_video);
+
+        int spanCount = 2; // 3 columns
+        int spacing = 20; // 50px
+        boolean includeEdge = true;
+        mListVideo.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext, spanCount);
+        mListVideo.setLayoutManager(layoutManager);
+
+        mListVideo.setAdapter(mVideoAdapter);
+        mListVideo.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+
+                updateData();
+            }
+        });
+
+        updateData();
 
     }
 
@@ -102,13 +153,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
-            String imgPath = data.getStringExtra(ScanFragment.RESULT_IMAGE_PATH);
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-            Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
-            imageView.setImageBitmap(bitmap);
-        }
+
     }
 
     @Override
@@ -181,5 +226,64 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(ScanActivity.EXTRA_ACTION_BAR_COLOR, R.color.colorPrimary); // Set title color - optional
         intent.putExtra(ScanActivity.EXTRA_LANGUAGE, "en"); // Set language - optional
         startActivityForResult(intent, REQUEST_CODE_SCAN);
+    }
+
+
+    protected void updateData() {
+
+        //Log.i(TAG, "run update data");
+
+        if (mVideoAdapter.isLoaded()) {
+
+            mVideoAdapter.setIsLoaded(false);
+
+            ParseQuery<ParseObject> query = ParseQuery.getQuery(DatabaseUtils.BOOK_COLLECTION);
+            //query.whereEqualTo(AppConfig.AUDIO_ISDELETE, 0);
+            //query.orderByDescending(AppConfig.AUDIO_GRAVITY);
+            query.fromLocalDatastore();
+            query.setLimit(100);
+            query.setSkip(mVideoAdapter.getPage() * 100);
+
+            //Log.i(TAG, "skip:" + mVideoAdapter.getPage() * 10);
+
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> videos, ParseException e) {
+                    if (e == null) {
+                        //Log.d(TAG, "Retrieved " + videos.size() + " scores");
+                        //int i = 1;
+                        for (ParseObject parseObject : videos) {
+                            // i++;
+                            try {
+                                Video video = new Video();
+                                video.setObjectId(parseObject.getObjectId());
+                                video.setTitle(parseObject.getString("title"));
+                                String path = (String) parseObject.getList("imgPaths").get(0);
+                                Log.d(TAG,path);
+                                video.setBanner(path);
+                                mVideoAdapter.addVideo(video);
+                            }catch (ClassCastException cex){
+
+                            }
+
+
+
+                        }
+
+                        if (0 != videos.size()) {
+                            mVideoAdapter.notifyDataSetChanged();
+
+                            mVideoAdapter.nextPage();
+
+                            mVideoAdapter.setIsLoaded(true);
+                        }
+
+                    } else {
+                        Log.e(TAG, "Error: " + e.getMessage(), e);
+                    }
+                }
+            });
+        }
+
+
     }
 }

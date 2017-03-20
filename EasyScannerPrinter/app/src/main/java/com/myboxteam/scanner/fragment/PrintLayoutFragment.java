@@ -16,13 +16,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.provider.MediaStore;
-import android.provider.OpenableColumns;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SwitchCompat;
@@ -387,12 +385,26 @@ public class PrintLayoutFragment extends Fragment implements RadioGroup.OnChecke
         switch (requestCode) {
             case PICKFILE_RESULT_CODE:
                 if (resultCode == Activity.RESULT_OK) {
-                    userPickedUri = data.getData();
-                    showFileInfo(userPickedUri);
+                    showFilePicked(data.getData());
                 }
                 break;
 
         }
+    }
+
+    private void showFilePicked(Uri data) {
+        userPickedUri = data;
+    }
+    public void showFilePicked(File data) {
+        userPickedUri = Uri.fromFile(data);
+
+        String nameIndex = data.getName();
+        Long sizeIndex = data.length();
+
+        Toast.makeText(getActivity(),
+                "File " + nameIndex + "(" + Long.toString(sizeIndex) + "0",
+                Toast.LENGTH_LONG).show();
+
     }
 
     private String getMimeType(Uri uri) {
@@ -400,17 +412,4 @@ public class PrintLayoutFragment extends Fragment implements RadioGroup.OnChecke
         return getActivity().getContentResolver().getType(returnUri);
     }
 
-    private void showFileInfo(Uri uri) {
-        Cursor returnCursor =
-                getActivity().getContentResolver().query(uri, null, null, null, null);
-
-        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-        int sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
-        returnCursor.moveToFirst();
-
-        Toast.makeText(getActivity(),
-                "File " + returnCursor.getString(nameIndex) + "(" + Long.toString(returnCursor.getLong(sizeIndex)) + "0",
-                Toast.LENGTH_LONG).show();
-
-    }
 }

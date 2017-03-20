@@ -30,23 +30,24 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".activity.ScanActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.BookActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".activity.PrintActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.CloudActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-
 
 
     </application>
