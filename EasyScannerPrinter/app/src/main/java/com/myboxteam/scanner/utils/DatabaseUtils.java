@@ -3,6 +3,7 @@ package com.myboxteam.scanner.utils;
 import android.graphics.Bitmap;
 
 import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
@@ -26,6 +27,19 @@ public  class DatabaseUtils {
         query.getInBackground(bookId,callback);
     }
 
+    public static ParseObject getBookById(String bookId) {
+        ParseObject  data = null;
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(BOOK_COLLECTION);
+        query.fromLocalDatastore();
+        try {
+            data =  query.get(bookId);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
     public static void deleteBookById() {
 
     }
@@ -37,7 +51,7 @@ public  class DatabaseUtils {
     public static ParseObject createBook(String imgPath, SaveCallback saveCallback) {
         ParseObject book = new ParseObject(BOOK_COLLECTION);
         book.setObjectId(genrateId());
-
+        book.put("title","New document");
         book.addAllUnique("imgPaths", Arrays.asList(imgPath));
         book.pinInBackground(saveCallback);
 

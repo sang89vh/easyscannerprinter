@@ -14,6 +14,7 @@ package com.myboxteam.scanner.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -30,10 +31,12 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -111,14 +114,6 @@ public class PrintLayoutFragment extends Fragment implements RadioGroup.OnChecke
         valueText = (EditText) inflatedView.findViewById(R.id.valueEditText);
         LinearLayout customData = (LinearLayout) inflatedView.findViewById(R.id.customData);
         showCustomData = customData.getVisibility() == View.VISIBLE;
-
-
-        FloatingActionButton printButton = (FloatingActionButton) inflatedView.findViewById(R.id.printBtn);
-        printButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                continueButtonClicked(v);
-            }
-        });
 
         Button buttonPick = (Button) inflatedView.findViewById(R.id.buttonPick);
         buttonPick.setOnClickListener(new Button.OnClickListener(){
@@ -405,11 +400,27 @@ public class PrintLayoutFragment extends Fragment implements RadioGroup.OnChecke
                 "File " + nameIndex + "(" + Long.toString(sizeIndex) + "0",
                 Toast.LENGTH_LONG).show();
 
+        RadioButton rpdf = (RadioButton) getActivity().findViewById(R.id.contentPDF);
+        rpdf.setChecked(true);
+        RadioButton rimg = (RadioButton) getActivity().findViewById(R.id.contentImage);
+        rimg.setChecked(false);
+        contentType = CONTENT_TYPE_PDF;
+
     }
 
-    private String getMimeType(Uri uri) {
-        Uri returnUri = uri;
-        return getActivity().getContentResolver().getType(returnUri);
-    }
+    public String getMimeType(Uri uri) {
+        String mimeType = null;
+        if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+            ContentResolver cr = getActivity().getContentResolver();
+            mimeType = cr.getType(uri);
+        } else {
+            String fileExtension = MimeTypeMap.getFileExtensionFromUrl(uri
+                    .toString());
+            mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
+                    fileExtension.toLowerCase());
+        }
 
+
+        return mimeType;
+    }
 }

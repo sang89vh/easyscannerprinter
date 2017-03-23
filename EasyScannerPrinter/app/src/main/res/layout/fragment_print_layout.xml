@@ -68,14 +68,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="@string/content_image"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/contentPDF"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/content_pdf"
-                        android:textColor="#b0b0b0" />
+                         />
                 </RadioGroup>
             </RelativeLayout>
 
@@ -134,35 +134,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/layout_fit"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/layoutCrop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/layout_crop"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/layoutCenter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/layout_center"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/layoutCenterTop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/layout_center_top"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/layoutCenterTopLeft"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/layout_top_left"
-                        android:textColor="#b0b0b0" />
+                         />
                 </RadioGroup>
             </RelativeLayout>
 
@@ -208,7 +208,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="@string/layout_without_margin"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/layoutWithMargin"
@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="@string/layout_with_margin"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/layoutWithTopMargin"
@@ -270,14 +270,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="@string/not_encrypted"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/uniquePerApp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/unique_per_app"
-                        android:textColor="#b0b0b0" />
+                         />
 
                     <RadioButton
                         android:id="@+id/uniquePerVendor"
@@ -285,7 +285,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:text="@string/unique_per_vendor"
-                        android:textColor="#b0b0b0" />
+                         />
                 </RadioGroup>
             </RelativeLayout>
 
@@ -390,18 +390,5 @@
         </RelativeLayout>
 
     </ScrollView>
-    <android.support.design.widget.FloatingActionButton
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/printBtn"
-        android:layout_width="60dp"
-        android:layout_height="55.5dp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="17dp"
-        android:paddingLeft="2dp"
-        android:layout_alignParentBottom="true"
-        app:backgroundTint="@android:color/holo_red_light"
-        android:clickable="true"
-        android:src="@drawable/ic_play"
-        android:scaleType="center"/>
+
 </RelativeLayout>

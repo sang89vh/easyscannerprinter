@@ -38,7 +38,6 @@
             android:layout_toRightOf="@id/print_plugin_manager_icon"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:textColor="@color/HPFontColorWhite"
             android:text="@string/print_plugin_manager"/>
         <TextView
             android:id="@+id/print_plugin_manager_description"
@@ -71,7 +70,7 @@
             android:layout_toRightOf="@id/print_help_menu_icon"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
-            android:textColor="@color/HPFontColorWhite"
+            
             android:text="@string/print_help_menu"/>
         <TextView
             android:id="@+id/print_help_menu_description"

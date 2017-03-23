@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
     protected BookRecyclerAdapter mVideoAdapter;
     protected RecyclerView mListVideo;
-    private static final int REQUEST_CODE_SCAN = 47;
+    public static final int REQUEST_CODE_SCAN = 47;
     private String bookId;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        mContext = getApplicationContext();
+        mContext = this;
 
         mApp = (MBApplication) getApplication();
         /* List audio adapter */
@@ -127,12 +127,21 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_wifi_transfer:
+                //go to wifi transfer setting
+
+                Intent intent2 = new Intent(mContext,HTTPServerActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.action_settings:
+                Intent intent = new Intent(mContext, SettingActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
     /*@Override

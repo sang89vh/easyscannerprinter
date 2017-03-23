@@ -31,7 +31,6 @@ import java.util.Locale;
 
 public class ScanActivity extends AppCompatActivity  implements ThumbnailCallback {
     public static final String BOOK_ID = "bookId";
-    private String bookId;
     public static final String EXTRA_BRAND_IMG_RES = "title_img_res";
     public static final String EXTRA_TITLE = "title";
     public static final String EXTRA_LANGUAGE = "language";
@@ -47,8 +46,6 @@ public class ScanActivity extends AppCompatActivity  implements ThumbnailCallbac
         setContentView(R.layout.activity_scan);
 
         Bundle bundle = getIntent().getExtras();
-        //if book id is null=> start from main activity else start from book for adding new image
-        bookId = bundle.getString(ScanActivity.BOOK_ID);
 
         activity = this;
 

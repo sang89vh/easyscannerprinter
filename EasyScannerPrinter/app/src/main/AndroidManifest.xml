@@ -6,6 +6,10 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -36,19 +40,68 @@
         </activity>
         <activity
             android:name=".activity.ScanActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.BookActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
         <activity
             android:name=".activity.PrintActivity"
+            android:parentActivityName=".activity.BookActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.CloudActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
+        <activity
+            android:name=".activity.PrintDialogActivity"
+            android:parentActivityName=".activity.PrintActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.SettingActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.HTTPServerActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <!--HTTP-->
+        <service
+            android:name="com.myboxteam.scanner.services.httpservice.HTTPService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".services.httpservice.HTTPTileService"
+            android:icon="@drawable/ic_http_dark"
+            android:label="@string/http"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.myboxteam.scanner.services.httpservice.HTTPReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.myboxteam.scanner.services.httpservice.HTTPReceiver.ACTION_START_HTTPSERVER" />
+                <action android:name="com.myboxteam.scanner.services.httpservice.HTTPReceiver.ACTION_STOP_HTTPSERVER" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.myboxteam.scanner.ui.notifications.HTTPNotification"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.myboxteam.scanner.services.httpservice.HTTPReceiver.HTTPSERVER_STARTED" />
+                <action android:name="com.myboxteam.scanner.services.httpservice.HTTPReceiver.HTTPSERVER_STOPPED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

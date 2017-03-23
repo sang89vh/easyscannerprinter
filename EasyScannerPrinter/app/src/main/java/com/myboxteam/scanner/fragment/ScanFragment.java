@@ -47,7 +47,8 @@ import java.util.Map;
 
 public class ScanFragment extends Fragment {
 
-
+    private String TAG = "ScanFragment";
+    private String bookId;
     // ===========================================================
     // Constants
     // ===========================================================
@@ -74,6 +75,7 @@ public class ScanFragment extends Fragment {
     private ProgressDialogFragment progressDialogFragment;
 
     private String takenPhotoLocation;
+    private boolean isEditScannedDoc = false;
     private Bitmap takenPhotoBitmap;
     private Bitmap documentBitmap;
     private Bitmap documentColoredBitmap;
@@ -111,7 +113,7 @@ public class ScanFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
-        scanActivity =(ScanActivity) getActivity();
+        scanActivity = (ScanActivity) getActivity();
         thumbnailsWrapHight = dpToPx(100);
     }
 
@@ -127,6 +129,12 @@ public class ScanFragment extends Fragment {
         viewHolder.prepare(view);
         super.onViewCreated(view, savedInstanceState);
 
+
+        Bundle bundle = getActivity().getIntent().getExtras();
+        //if book id is null=> start from main activity else start from book for adding new image
+        bookId = bundle.getString(ScanActivity.BOOK_ID);
+        takenPhotoLocation = bundle.getString("takenPhotoLocation");
+
         int currentOreantation = Utils.getScreenOrientation(getActivity());
         if (previousOreantation == -1) {
             previousOreantation = currentOreantation;
@@ -137,6 +145,8 @@ public class ScanFragment extends Fragment {
         if (takenPhotoLocation == null) {
             takePhoto();
         } else {
+            isEditScannedDoc = true;
+            onPhotoTaken();
             if (documentBitmap != null) {
                 updateViewsWithNewBitmap();
                 viewHolder.sourceImageView.setVisibility(View.INVISIBLE);
@@ -217,7 +227,7 @@ public class ScanFragment extends Fragment {
             return true;
         } else if (item.getItemId() == R.id.colors) {
 
-            if(thumbnailsWrap.getVisibility() == View.GONE){
+            if (thumbnailsWrap.getVisibility() == View.GONE) {
                 // Prepare the View for the animation
                 thumbnailsWrap.setVisibility(View.VISIBLE);
 //                thumbnailsWrap.setAlpha(0.0f);
@@ -228,7 +238,7 @@ public class ScanFragment extends Fragment {
 
                 // Prepare the View for the animation
                 thumbnailsWrap.setVisibility(View.VISIBLE);
-            }else{
+            } else {
 
                 thumbnailsWrap.setVisibility(View.GONE);
 
@@ -350,12 +360,12 @@ public class ScanFragment extends Fragment {
             removeFile(takenPhotoLocation);
             releaseAllBitmaps();
 
-            Intent intent = new Intent(getContext(),BookActivity.class);
+            Intent intent = new Intent(getContext(), BookActivity.class);
             intent.putExtra(RESULT_IMAGE_PATH, scannedDocFile.getAbsolutePath());
+            intent.putExtra(ScanActivity.BOOK_ID, bookId);
             startActivity(intent);
         }
     }
-
 
 
     private void onPhotoTaken() {
@@ -419,13 +429,18 @@ public class ScanFragment extends Fragment {
     }
 
     private File createImageFile(String fileName) {
-        File storageDir = getActivity().getExternalFilesDir("images");
-        if (storageDir == null) {
-            throw new RuntimeException("Not able to get to External storage");
-        }
-        File image = new File(storageDir, fileName + ".jpg");
+        if(isEditScannedDoc){
+            return new File(takenPhotoLocation);
+        }else {
+            File storageDir = getActivity().getExternalFilesDir("images");
+            if (storageDir == null) {
+                storageDir = getActivity().getFilesDir();
+                Log.e(TAG, "Not able to get to External storage");
+            }
+            File image = new File(storageDir, fileName + ".jpg");
 
-        return image;
+            return image;
+        }
     }
 
     private void removeFile(String absoluteLocation) {
@@ -561,7 +576,6 @@ public class ScanFragment extends Fragment {
 
         points = null;
     }
-
 
 
     private void onCropTaskFinished(CropTaskResult cropTaskResult) {
@@ -722,7 +736,6 @@ public class ScanFragment extends Fragment {
     }
 
 
-
     private static class RotatingTaskResult {
 
         private Bitmap takenPhotoBitmap;
@@ -780,7 +793,7 @@ public class ScanFragment extends Fragment {
         this.documentBitmap = documentBitmap;
     }
 
-    private static String genrateId(){
-        return  String.valueOf(Calendar.getInstance().getTimeInMillis());
+    private static String genrateId() {
+        return String.valueOf(Calendar.getInstance().getTimeInMillis());
     }
 }

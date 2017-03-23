@@ -18,7 +18,7 @@
         android:background="@color/colorPrimary"
         android:gravity="start|center_vertical"
         android:padding="20px"
-        android:text="@string/action_delete"
+        android:text="@string/action_edit"
         android:textColor="@android:color/white"
         android:textSize="20sp"/>
 
