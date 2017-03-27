@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.webkit.WebView;
 
 import com.myboxteam.scanner.R;
 import com.myboxteam.scanner.application.MBApplication;
@@ -17,11 +18,14 @@ public class SettingActivity extends AppCompatActivity {
     private MBApplication mApp;
     private Toolbar toolbar;
     private Context mContext;
+    private WebView mWebview ;
+
+    private String URL = "http://data.mbackend.info/myboxteam/SuggestApp.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+       setContentView(R.layout.activity_setting);
         mContext = this;
 
         mApp = (MBApplication) getApplication();
@@ -33,5 +37,12 @@ public class SettingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        mWebview  = (WebView) findViewById(R.id.webView);
+
+        mWebview.getSettings().setJavaScriptEnabled(true); // enable javascript
+
+        mWebview .loadUrl(URL);
     }
 }

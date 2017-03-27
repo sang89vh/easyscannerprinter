@@ -71,7 +71,7 @@ public class HTTPServer extends NanoHTTPD {
         mMainHtml = new StringBuffer("<html lang=\"en\" data-ng-app=\"FileManagerApp\">\n \n<header> \n");
         mMainHtml.append("<meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\"> \n");
         mMainHtml.append("<meta charset=\"utf-8\"> \n");
-        mMainHtml.append("<title>Easy File Manager</title> \n");
+        mMainHtml.append("<title>Easy Scanner Printer</title> \n");
         mMainHtml.append("<script src=\"/angular_min.js\"></script> \n");
         mMainHtml.append("<script src=\"/angular_translate_min.js\"></script> \n");
         mMainHtml.append("<script src=\"/ng_file_upload_min.js\"></script> \n");
@@ -119,7 +119,7 @@ public class HTTPServer extends NanoHTTPD {
         mMainHtml.append("<body class=\"ng-cloak\">\n");
         mMainHtml.append("<div class=\"col-md-12\" >\n");
         mMainHtml.append("<angular-filemanager></angular-filemanager> \n");
-        mMainHtml.append("<div class=\"container\"><a href=\"https://play.google.com/store/apps/developer?id=MyboxTeam\">Free Download File Manager on Google Play Store:Click here</a></div> \n");
+        mMainHtml.append("<div class=\"container\"><a href=\"https://play.google.com/store/apps/developer?id=MyboxTeam\">Free Download Easy Scanner on Google Play Store:Click here</a></div> \n");
         mMainHtml.append("</div> \n");
         mMainHtml.append("</body> \n</html>");
 

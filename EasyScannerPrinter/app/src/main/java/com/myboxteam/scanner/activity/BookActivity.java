@@ -54,6 +54,7 @@ public class BookActivity extends AppCompatActivity {
     private String bookId;
     private ParseObject book;
     private String imgPath;
+    private String oldImgPath;
     private MBApplication mApp;
     private Context mContext;
     private Toolbar toolbar;
@@ -88,8 +89,22 @@ public class BookActivity extends AppCompatActivity {
                 bookId = object.getObjectId();
                 toolbar.setTitle(book.getString("title"));
                 List<String> list = book.getList("imgPaths");
-                if (imgPath != null) {
-                    list.add(imgPath);
+                if (imgPath != null && imgPath != "") {
+
+                    if(oldImgPath != null & oldImgPath !="") {
+                        int idxOldImagePath = list.indexOf(oldImgPath);
+                        if(idxOldImagePath!= -1) {
+                            list.add(idxOldImagePath, imgPath);
+                            list.remove(idxOldImagePath + 1);
+                        }else{
+                            list.add(imgPath);
+                        }
+
+                    }else{
+                        list.add(imgPath);
+                    }
+
+
                     //update
                     book.remove("pdfPath");
                     book.put("imgPaths", list);
@@ -134,6 +149,7 @@ public class BookActivity extends AppCompatActivity {
         bookId = bundle.getString(ScanActivity.BOOK_ID);
         //bookId = null;
         imgPath = bundle.getString(ScanFragment.RESULT_IMAGE_PATH);
+        oldImgPath = bundle.getString(ScanFragment.OLD_RESULT_IMAGE_PATH);
         //imgPath = "/storage/emulated/0/DCIM/easycamera/03.jpg";
 
         mDragListView = (DragListView) findViewById(R.id.drag_list_view);

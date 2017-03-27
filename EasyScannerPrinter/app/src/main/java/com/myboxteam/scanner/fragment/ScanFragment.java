@@ -54,6 +54,7 @@ public class ScanFragment extends Fragment {
     // ===========================================================
 
     public static final String RESULT_IMAGE_PATH = "imgPath";
+    public static final String OLD_RESULT_IMAGE_PATH = "oldImgPath";
     private ScanActivity scanActivity;
     private static final int TAKE_PHOTO_REQUEST_CODE = 815;
     private static final String SAVED_ARG_TAKEN_PHOTO_LOCATION = "taken_photo_loc";
@@ -340,7 +341,7 @@ public class ScanFragment extends Fragment {
             }
 
         } else {
-            File scannedDocFile = createImageFile(genrateId());
+            File scannedDocFile = generateFile(genrateId());
 
             Bitmap tmp = documentColoredBitmap != null ? documentColoredBitmap : documentBitmap;
 
@@ -362,6 +363,9 @@ public class ScanFragment extends Fragment {
 
             Intent intent = new Intent(getContext(), BookActivity.class);
             intent.putExtra(RESULT_IMAGE_PATH, scannedDocFile.getAbsolutePath());
+            if(isEditScannedDoc) {
+                intent.putExtra(OLD_RESULT_IMAGE_PATH, takenPhotoLocation);
+            }
             intent.putExtra(ScanActivity.BOOK_ID, bookId);
             startActivity(intent);
         }
@@ -427,11 +431,8 @@ public class ScanFragment extends Fragment {
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
         startActivityForResult(takePictureIntent, TAKE_PHOTO_REQUEST_CODE);
     }
+    private File generateFile(String fileName) {
 
-    private File createImageFile(String fileName) {
-        if(isEditScannedDoc){
-            return new File(takenPhotoLocation);
-        }else {
             File storageDir = getActivity().getExternalFilesDir("images");
             if (storageDir == null) {
                 storageDir = getActivity().getFilesDir();
@@ -440,6 +441,15 @@ public class ScanFragment extends Fragment {
             File image = new File(storageDir, fileName + ".jpg");
 
             return image;
+
+    }
+    private File createImageFile(String fileName) {
+        if(isEditScannedDoc){
+            return new File(takenPhotoLocation);
+        }else {
+
+
+            return generateFile(fileName);
         }
     }
 
