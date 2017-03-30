@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -34,7 +36,7 @@ import java.io.InputStream;
  * Created by Admin on 3/9/2017.
  */
 
-public class MBApplication extends android.app.Application {
+public class MBApplication extends MultiDexApplication {
     static {
         System.loadLibrary("NativeImageProcessor");
     }
@@ -115,7 +117,11 @@ public class MBApplication extends android.app.Application {
             }
         }
     };
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
     @Override
     public void onCreate() {
         super.onCreate();
