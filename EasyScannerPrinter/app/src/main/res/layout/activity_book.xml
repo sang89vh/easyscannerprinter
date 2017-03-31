@@ -60,7 +60,7 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_print"
-            android:src="@mipmap/ic_printer"
+            fab:fab_icon="@drawable/ic_printer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
@@ -69,7 +69,7 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_add_more"
-            android:src="@mipmap/ic_add_photo"
+            fab:fab_icon="@drawable/ic_add_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
@@ -78,7 +78,7 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_share"
-            android:src="@mipmap/ic_share"
+            fab:fab_icon="@drawable/ic_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"

@@ -62,7 +62,7 @@
             android:id="@+id/action_print"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_printer"
+            fab:fab_icon="@drawable/ic_printer"
             fab:fab_colorNormal="@color/white"
             fab:fab_colorPressed="@color/white_pressed"
             fab:fab_title="@string/action_wifi_print" />
@@ -71,7 +71,7 @@
             android:id="@+id/action_cloud_print"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_cloud"
+            fab:fab_icon="@drawable/ic_cloud"
             fab:fab_colorNormal="@color/white"
             fab:fab_colorPressed="@color/white_pressed"
             fab:fab_title="@string/action_cloud_print" />
@@ -80,7 +80,7 @@
             android:id="@+id/action_save_pdf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_pdf"
+            fab:fab_icon="@drawable/ic_pdf"
             fab:fab_colorNormal="@color/white"
             fab:fab_colorPressed="@color/white_pressed"
             fab:fab_title="@string/action_save_pdf" />
